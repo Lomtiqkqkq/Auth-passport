@@ -6,11 +6,13 @@ import { AuthController } from './controller/auth.controller';
 import * as dotenv from 'dotenv';
 import { LocalStrategy } from './strategy/local.strategy';
 import { AccessJwtStrategy } from './strategy/access-jwt.strategy';
+import { ConfigModule } from '@nestjs/config';
+import { GoogleStrategy } from './strategy/google.strategy';
 
 dotenv.config();
 @Module({
-  providers: [AuthService, LocalStrategy, AccessJwtStrategy],
-  imports: [UsersModule, JwtModule.register({})],
+  providers: [AuthService, LocalStrategy, AccessJwtStrategy, GoogleStrategy],
+  imports: [UsersModule, JwtModule.register({}), ConfigModule],
   controllers: [AuthController],
 })
 export class AuthModule {}
