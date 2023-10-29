@@ -23,16 +23,4 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       email: emails[0].value,
     };
   }
-  // async googleValidate(
-  //   accessToken: string,
-  //   refreshToken: string,
-  //   profile: Profile,
-  // ) {
-  //   const user = {
-  //     email: profile.emails[0].value,
-  //     username: profile.username,
-  //     accessToken,
-  //   };
-  //   return user;
-  // }
 }

@@ -24,8 +24,8 @@ export class AuthService {
     }
     throw new UnauthorizedException({ message: 'wrong email or password' });
   }
-  async googleValidateUser(googleUser: any) {
-    const candidate = await this.userService.findByEmail(googleUser.email);
+  async passportValidateUser(passportUser: any) {
+    const candidate = await this.userService.findByEmail(passportUser.email);
     if (!candidate) {
       throw new HttpException('user does`t exist!', HttpStatus.NOT_FOUND);
     }
