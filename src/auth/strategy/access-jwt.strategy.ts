@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import * as dotenv from 'dotenv';
+import { ConfigService } from '@nestjs/config';
 dotenv.config();
 type jwtPayload = {
   email: string;
@@ -13,10 +14,10 @@ export class AccessJwtStrategy extends PassportStrategy(
   Strategy,
   'access-jwt',
 ) {
-  constructor() {
+  constructor(private configService: ConfigService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: process.env.SECRET_AT_JWT,
+      secretOrKey: configService.get<string>('SECRET_AT_JWT'),
     });
   }
   async validate(payload: jwtPayload) {
