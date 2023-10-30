@@ -13,8 +13,20 @@ passport authorization strategies**
 
 ## business logic of the module
 1. Depending on the chosen strategy, the user is redirected to the service from where access to mail is requested
-    - If the requested mail is not in the database, then a 401 status code are returned and interceptors are triggered, which redirect the user to the registration endpoint
-    - If the user is found, an access token is generated
+- If the requested mail is not in the database, then a 401 status code are returned and interceptors are triggered, which redirect the user to the registration endpoint
+```
+@Catch()
+export class AuthFilter implements ExceptionFilter {
+  catch(exception: ForbiddenException, host: ArgumentsHost) {
+    host
+      .switchToHttp()
+      .getResponse()
+      .redirect('http://localhost:8000/auth/registration');
+  }
+}
+
+```
+- If the user is found, an access token is generated
  <p align="center">
   <img width="800" height="350" src="https://github.com/Lomtiqkqkq/Auth-passport/blob/main/src/image/access%20token%20return.png" alt="return access_token">
 </p>
