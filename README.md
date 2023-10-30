@@ -15,8 +15,13 @@ passport authorization strategies**
 1. Depending on the chosen strategy, the user is redirected to the service from where access to mail is requested
     - If the requested mail is not in the database, then a 401 status code are returned and interceptors are triggered, which redirect the user to the registration endpoint
     - If the user is found, an access token is generated
-   ![]()
-# Used Strategies
+ <p align="center">
+  <img width="400" height="350" src="https://github.com/Lomtiqkqkq/Auth-passport/blob/main/src/image/access%20token%20return.png" alt="return access_token">
+</p>
+
+**IMPORTANT! In this module, the logic for generating/updating the refresh token is not thought out, which makes it more vulnerable, this logic will be added in subsequent updates**
+
+## Used Strategies
 
 ```bash
 #passport-local
