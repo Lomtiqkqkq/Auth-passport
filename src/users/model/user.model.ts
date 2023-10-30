@@ -18,6 +18,6 @@ export class UserModel extends Model<UserModel, UserCreationAttrs> {
   email: string;
   @Column({ type: DataType.STRING, unique: true, allowNull: false })
   username: string;
-  @Column({ type: DataType.STRING, unique: true, allowNull: false })
+  @Column({ type: DataType.STRING, unique: false, allowNull: false })
   password: string;
 }

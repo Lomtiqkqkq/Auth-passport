@@ -1,19 +1,32 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  UseFilters,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from '../service/auth.service';
-import { AuthLocalGuard } from '../guard/auth-local.guard';
 import { AuthJwtGuard } from '../guard/auth-jwt.guard';
 import { CreateUserDto } from '../../users/dto/createUserDto';
 import { AuthGoogleGuard } from '../guard/auth-google.guard';
 import { UsersService } from '../../users/service/users.service';
 import { AuthYandexGuard } from '../guard/auth-yandex.guard';
+import { AuthFilter } from '../exception/auth.filter';
+import { AuthGuard } from '../guard/auth.guard';
 
+@UseFilters(AuthFilter)
 @Controller('auth')
 export class AuthController {
   constructor(
     private authService: AuthService,
     private userService: UsersService,
   ) {}
-  @UseGuards(AuthLocalGuard)
+  @Get('/registration')
+  registration() {
+    return 'registration page';
+  }
   @Post('login')
   logIn(@Body() logInDto: CreateUserDto) {
     return this.authService.localValidateUser(
@@ -31,8 +44,8 @@ export class AuthController {
   googleLogin() {
     //guard redirect
   }
-  @UseGuards(AuthGoogleGuard)
-  @Get('/google/callback')
+  @UseGuards(AuthGuard)
+  @Get('google/callback')
   googleCallback(@Req() req) {
     return this.authService.passportValidateUser(req.user);
   }
@@ -41,8 +54,8 @@ export class AuthController {
   yandexLogin() {
     //guard redirect
   }
-  @UseGuards(AuthYandexGuard)
-  @Get('/yandex/callback')
+  @UseGuards(AuthGuard)
+  @Get('yandex/callback')
   yandexCallback(@Req() req) {
     return this.authService.passportValidateUser(req.user);
   }

@@ -1,4 +1,5 @@
 import {
+  ForbiddenException,
   HttpException,
   HttpStatus,
   Injectable,
@@ -27,7 +28,7 @@ export class AuthService {
   async passportValidateUser(passportUser: any) {
     const candidate = await this.userService.findByEmail(passportUser.email);
     if (!candidate) {
-      throw new HttpException('user does`t exist!', HttpStatus.NOT_FOUND);
+      return new ForbiddenException();
     }
     return { access_token: (await this.getTokens(candidate)) + '' };
   }
