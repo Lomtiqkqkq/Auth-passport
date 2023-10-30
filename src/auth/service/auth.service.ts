@@ -28,7 +28,7 @@ export class AuthService {
   async passportValidateUser(passportUser: any) {
     const candidate = await this.userService.findByEmail(passportUser.email);
     if (!candidate) {
-      return new ForbiddenException();
+      throw new ForbiddenException();
     }
     return { access_token: (await this.getTokens(candidate)) + '' };
   }
