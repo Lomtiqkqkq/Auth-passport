@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <a href="https://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
@@ -10,6 +10,32 @@
 
 **Module showing the interaction of several
 passport authorization strategies**
+
+## business logic of the module
+1. Depending on the chosen strategy, the user is redirected to the service from where access to mail is requested
+    - If the requested mail is not in the database, then a 401 status code are returned and interceptors are triggered, which redirect the user to the registration endpoint
+    - If the user is found, an access token is generated
+   ![]()
+# Used Strategies
+
+```bash
+#passport-local
+$ npm install passport-local
+
+#passport-jwt
+$ npm install passport-jwt
+$ npm install @types/passport-jwt -D
+
+#passport-google
+$ npm install passport-google-oauth20
+$ npm install @types/passport-google-oauth20
+
+#passport-yandex
+$ npm install passport-yandex
+## there are no typescript types for Yandex
+```
+**You can familiarize yourself with the principles
+of operation of a passport in their [official documentation](https://www.passportjs.org/)**
 
 ## Installation
 

@@ -29,7 +29,7 @@ export class AuthService {
     if (!candidate) {
       throw new HttpException('user does`t exist!', HttpStatus.NOT_FOUND);
     }
-    return this.getTokens(candidate);
+    return { access_token: (await this.getTokens(candidate)) + '' };
   }
   async getTokens(user: any) {
     const payload = {
