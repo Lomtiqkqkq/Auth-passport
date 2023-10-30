@@ -44,7 +44,7 @@ export class AuthController {
   googleLogin() {
     //guard redirect
   }
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGoogleGuard, AuthGuard)
   @Get('google/callback')
   googleCallback(@Req() req) {
     return this.authService.passportValidateUser(req.user);
@@ -54,7 +54,7 @@ export class AuthController {
   yandexLogin() {
     //guard redirect
   }
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthYandexGuard, AuthGuard)
   @Get('yandex/callback')
   yandexCallback(@Req() req) {
     return this.authService.passportValidateUser(req.user);
