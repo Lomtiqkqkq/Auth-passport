@@ -28,7 +28,7 @@ export class AuthFilter implements ExceptionFilter {
 ```
 - If the user is found, an access token is generated
  <p align="center">
-  <img width="600" height="400" src="https://github.com/Lomtiqkqkq/Auth-passport/blob/main/src/image/access%20token%20return.png" alt="return access_token">
+  <img width="800" height="350" src="https://github.com/Lomtiqkqkq/Auth-passport/blob/main/src/image/access%20token%20return.png" alt="return access_token">
 </p>
 
 **IMPORTANT! In this module, the logic for generating/updating the refresh token is not thought out, which makes it more vulnerable, this logic will be added in subsequent updates**
