@@ -19,9 +19,10 @@ export class YandexStrategy extends PassportStrategy(Strategy, 'yandex') {
     _refreshToken: string,
     profile: Profile,
   ) {
-    const { emails } = profile;
+    const { username, emails } = profile;
     return {
       email: emails[0].value,
+      username: username,
     };
   }
 }
